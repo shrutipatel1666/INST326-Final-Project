@@ -5,6 +5,11 @@
 
 
 def update_inventory(inventory, recipes, order):
+"""
+Updtaes inventory after an order. 
+If there are not enough ingredients, the order is rejected
+Returns True if the order goes through and False if it cannot.
+"""
     needed = {}
 #Should go through the drinks in order
     for drink in order:
