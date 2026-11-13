@@ -1,3 +1,35 @@
+"""Coffee Shop Chaos - order processing function"""
+
+
+def process_orders(orders, inventory, recipes, minutes_available):
+    """Choose which orders to serve and update inventory.
+
+    Keep the player's priority order. Serve the most customers possible,
+    then break ties by revenue and by earlier positions in the order list.
+    Customers all start waiting at the beginning of the round. Drinks must
+    finish within each customer's patience and the time before closing.
+    Finishing exactly at either limit is allowed.
+
+    Args:
+        orders: Customer orders in the player's priority order. Each has
+            a unique order_id, drink, patience, and price.
+        inventory: Available amounts of each ingredient.
+        recipes: Ingredients and preparation time for each drink.
+        minutes_available: Minutes left before closing.
+
+    Returns:
+        The order IDs served and not served, the money earned, and
+        the total preparation time used.
+
+    Side Effects:
+        Removes ingredients for served drinks from inventory.
+        Trying different plans does not change the original inventory.
+
+    Raises:
+        ValueError: For negative time, patience, inventory, or ingredient
+            quantities, or preparation times that are zero or negative.
+
+    Intended for small rounds because it checks every possible plan.
     """
     if minutes_available < 0:
         raise ValueError("Available time cannot be negative.")
@@ -109,4 +141,5 @@
         "revenue": best_revenue,
         "time_used": best_time
     }
+
 
