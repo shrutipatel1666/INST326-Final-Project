@@ -6,7 +6,7 @@
 
 def update_inventory(inventory, recipes, order):
     needed = {}
-
+#Should go through the drinks in order
     for drink in order:
         for ingredient in recipes[drink]["ingredients"]:
             amount = recipes[drink]["ingredients"][ingredient]
@@ -15,11 +15,11 @@ def update_inventory(inventory, recipes, order):
                 needed[ingredient] = 0
 
             needed[ingredient] += amount
-
+#Checking if we have enough ingredients for the order
     for ingredient in needed:
         if inventory.get(ingredient, 0) < needed[ingredient]:
             return False
-
+#Take the ingredients out of inventory
     for ingredient in needed:
         inventory[ingredient] -= needed[ingredient]
 
